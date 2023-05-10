@@ -1,0 +1,127 @@
+#!/bin/bash
+
+builtin cd "$1" || return
+
+echo "menu" >"/tmp/lvim-forgit"
+
+function print_fzf_menu {
+	echo FORGIT ADD
+	echo FORGIT BLAME
+	echo FORGIT BRANCH DELETE
+	echo FORGIT CHECKOUT BRANCH
+	echo FORGIT CHECKOUT COMMIT
+	echo FORGIT CHECKOUT FILE
+	echo FORGIT CHECKOUT TAG
+	echo FORGIT CHERRY PICK
+	echo FORGIT CHERRY PICK FROM BRANCH
+	echo FORGIT CLEAN
+	echo FORGIT DIFF
+	echo FORGIT FIX UP
+	echo FORGIT IGNORE
+	echo FORGIT LOG
+	echo FORGIT REBASE
+	echo FORGIT RESET HEAD
+	echo FORGIT REVERT COMMIT
+	echo FORGIT STASH SHOW
+	echo FORGIT STASH PUSH
+}
+
+function get_list_for_fzf {
+	if [[ $action == "menu" ]]; then
+		print_fzf_menu "$1"
+	fi
+}
+
+while :; do
+	action=$(cat "/tmp/lvim-forgit")
+	pointer=("--pointer=$ICON_POINTER")
+	marker=("--marker=$ICON_MARKER")
+	header=("--header=$ICON_MENU LVIM FORGIT")
+	prompt=("--prompt=  Choice $ICON_POINTER ")
+	enter=("--bind=enter:accept")
+	selected=$(
+		get_list_for_fzf "$@" |
+			IFS=$'\n' fzf \
+				"$REVERSE" \
+				--query="$1" \
+				-s \
+				+m \
+				--header-first \
+				--no-border \
+				--border=none \
+				--preview-window=:hidden \
+				"--bind=$KEY_QUIT:clear-selection+execute(echo QUIT)+abort" \
+				"--bind=$KEY_CLEAR_QUERY:clear-selection+clear-query" \
+				"${pointer[@]}" \
+				"${marker[@]}" \
+				"${header[@]}" \
+				"${prompt[@]}" \
+				"${enter[@]}"
+	)
+	if [[ $selected == "QUIT" ]]; then
+		break
+	elif [[ $action == "menu" ]]; then
+		case "$selected" in
+		"FORGIT ADD")
+			bash "$FORGIT_PATH"/git-forgit add
+			;;
+		"FORGIT BLAME")
+			bash "$FORGIT_PATH"/git-forgit blame
+			;;
+		"FORGIT BRANCH DELETE")
+			bash "$FORGIT_PATH"/git-forgit branch_delete
+			;;
+		"FORGIT CHECKOUT BRANCH")
+			bash "$FORGIT_PATH"/git-forgit checkout_branch
+			;;
+		"FORGIT CHECKOUT COMMIT")
+			bash "$FORGIT_PATH"/git-forgit checkout_commit
+			;;
+		"FORGIT CHECKOUT FILE")
+			bash "$FORGIT_PATH"/git-forgit checkout_file
+			;;
+		"FORGIT CHECKOUT TAG")
+			bash "$FORGIT_PATH"/git-forgit checkout_tag
+			;;
+		"FORGIT CHERRY PICK")
+			bash "$FORGIT_PATH"/git-forgit cherry_pick
+			;;
+		"FORGIT CHERRY PICK FROM BRANCH")
+			bash "$FORGIT_PATH"/git-forgit cherry_pick_from_branch
+			;;
+		"FORGIT CLEAN")
+			bash "$FORGIT_PATH"/git-forgit clean
+			;;
+		"FORGIT DIFF")
+			bash "$FORGIT_PATH"/git-forgit diff
+			;;
+		"FORGIT FIX UP")
+			bash "$FORGIT_PATH"/git-forgit fixup
+			;;
+		"FORGIT IGNORE")
+			bash "$FORGIT_PATH"/git-forgit ignore
+			;;
+		"FORGIT LOG")
+			bash "$FORGIT_PATH"/git-forgit log
+			;;
+		"FORGIT REBASE")
+			bash "$FORGIT_PATH"/git-forgit rebase
+			;;
+		"FORGIT RESET HEAD")
+			bash "$FORGIT_PATH"/git-forgit reset_head
+			;;
+		"FORGIT REVERT COMMIT")
+			bash "$FORGIT_PATH"/git-forgit revert_commit
+			;;
+		"FORGIT STASH SHOW")
+			bash "$FORGIT_PATH"/git-forgit stash_show
+			;;
+		"FORGIT STASH PUSH")
+			bash "$FORGIT_PATH"/git-forgit stash_push
+			;;
+		esac
+		# return
+	fi
+done
+
+# vi: ft=sh

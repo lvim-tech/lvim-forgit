@@ -16,14 +16,19 @@ local config = {
 	on_close = {},
 	on_open = {},
 	mappings = {
-		split = "<C-x>",
-		vsplit = "<C-v>",
-		tabedit = "<C-t>",
-		edit = "<C-e>",
 		close = "<C-q>",
 	},
 	env = {
-		LVIM_FORGIT_PATH = vim.fn.fnamemodify(debug.getinfo(1, "S").source:gsub("^@", ""), ":h:h"),
+		FORGIT_PATH = vim.fn.fnamemodify(debug.getinfo(1, "S").source:gsub("^@", ""), ":h:h") .. "/forgit/bin",
+		FORGIT_FZF_DEFAULT_OPTS = "--height='100%' --preview-window='right:50%'",
+		REVERSE = "--reverse",
+		ICON_MENU = "",
+		ICON_POINTER = "",
+		ICON_MARKER = "",
+		ICON_PROMPT = "",
+		ICON_SEPARATOR = "",
+		KEY_QUIT = "ctrl-q",
+		KEY_CLEAR_QUERY = "ctrl-c",
 	},
 }
 
