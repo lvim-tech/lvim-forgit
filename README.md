@@ -18,17 +18,17 @@ Install the plugin with your preferred package manager:
 
 ```lua
 require("lazy").setup({
-	{
-		"lvim-tech/lvim-forgit",
-		dependencies = { "lvim-tech/lvim-shell" },
-		config = function()
-			require("lvim-forgit").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
-		end,
-	},
+  {
+    "lvim-tech/lvim-forgit",
+    dependencies = { "lvim-tech/lvim-shell" },
+    config = function()
+      require("lvim-forgit").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
+    end,
+  },
 })
 ```
 
@@ -36,15 +36,15 @@ require("lazy").setup({
 
 ```lua
 use({
-	"lvim-tech/lvim-forgit",
-	requires = { "lvim-tech/lvim-shell" },
-	config = function()
-		require("lvim-forgit").setup({
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		})
-	end,
+  "lvim-tech/lvim-forgit",
+  requires = { "lvim-tech/lvim-shell" },
+  config = function()
+    require("lvim-forgit").setup({
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    })
+  end,
 })
 ```
 
