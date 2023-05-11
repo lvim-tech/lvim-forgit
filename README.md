@@ -90,4 +90,23 @@ use({
 
 ```lua
 :LvimForgit
+:LvimForgitAdd
+:LvimForgitBlame
+:LvimForgitBranchDelete
+:LvimForgitCheckoutBranch
+:LvimForgitCheckoutCommit
+:LvimForgitCheckoutFile
+:LvimForgitCheckoutTag
+:LvimForgitCherryPick
+:LvimForgitCherryPickFromBranch
+:LvimForgitClean
+:LvimForgitDiff
+:LvimForgitFixUp
+:LvimForgitIgnore
+:LvimForgitLog
+:LvimForgitRebase
+:LvimForgitResetHead
+:LvimForgitRevertCommit
+:LvimForgitStashShow
+:LvimForgitStashPush
 ```
