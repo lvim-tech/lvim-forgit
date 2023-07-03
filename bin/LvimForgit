@@ -43,6 +43,7 @@ while :; do
 		get_list_for_fzf "$@" |
 			IFS=$'\n' fzf \
 				"$REVERSE" \
+				--color="$COLORS" \
 				--query="$1" \
 				-s \
 				+m \

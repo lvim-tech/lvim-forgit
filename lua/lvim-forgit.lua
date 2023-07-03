@@ -20,7 +20,8 @@ local config = {
     },
     env = {
         FORGIT_PATH = vim.fn.fnamemodify(debug.getinfo(1, "S").source:gsub("^@", ""), ":h:h") .. "/forgit/bin",
-        FORGIT_FZF_DEFAULT_OPTS = "--height='100%' --preview-window='right:50%' --reverse",
+        FORGIT_FZF_DEFAULT_OPTS = "--height='100%' --preview-window='right:50%' --reverse --color='fg:#448589,bg:#1B2125,hl:#C94233,fg+:#448589,bg+:#1B2125,hl+:#C94233,pointer:#C94233,info:#E58C26,spinner:#E58C26,header:#C94233,prompt:#7F9858,marker:#C94233'",
+        COLORS = "fg:#448589,bg:#1B2125,hl:#C94233,fg+:#448589,bg+:#1B2125,hl+:#C94233,pointer:#C94233,info:#E58C26,spinner:#E58C26,header:#C94233,prompt:#7F9858,marker:#C94233",
         REVERSE = "--reverse",
         ICON_MENU = "",
         ICON_POINTER = "",
